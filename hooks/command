@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+srcd="$(mktemp -d)"
+
+cleanup() {
+  rm -rf "${srcd}"
+}
+
+trap cleanup EXIT
+
+cmd="${BUILDKITE_PLUGIN_EXEC_COMMAND}"
+
+cat <<SCRIPT > "${srcd}/script"
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+${cmd}
+SCRIPT
+
+chmod +x "${srcd}/script"
+exec "${srcd}/script"

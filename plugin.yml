@@ -1,0 +1,13 @@
+name: Exec
+description: Execute scripts as a plugin step
+author: https://github.com/Shuttl-Tech
+
+requirements: []
+
+configuration:
+  properties:
+    command:
+      type: string
+  required:
+    - command
+  additionalProperties: false
